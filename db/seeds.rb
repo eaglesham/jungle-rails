@@ -132,5 +132,25 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+puts "Creating users and corresponding reviews"
+
+User.destroy_all
+Review.destroy_all
+
+4.times do
+  user = User.create!({
+    name: Faker::Name.name,        
+    email: Faker::Internet.email,
+    password: Faker::Internet.password
+        })
+  2.times do
+    user.reviews.create!({
+      product_id: Faker::Number.between(1, 12),
+      rating: Faker::Number.between(1, 5),
+      description: Faker::Hipster.paragraph(2) 
+    })
+  end
+end
+
 
 puts "DONE!"

@@ -26,6 +26,11 @@
       </div>
     </div>
 
+    <h4>Reviews</h4>
+    <% @reviews.each do | review | %>
+      <%= render 'review', rating: review.rating, user_id: review.user_id, description: review.description %>
+    <% end %>
+
   </article>
 
 </section>

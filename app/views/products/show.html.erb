@@ -26,8 +26,9 @@
       </div>
     </div>
 
+    <% if current_user %>
     <%= form_for([@product, @product.reviews.build]) do |f| %>
-      <h4>Add Review:</h4>
+      <h4 class="page-header">Add Review:</h4>
       <div class="form-group">
       <ul>
           <li>
@@ -40,12 +41,13 @@
       </ul>
       </div>
     <% end %>
+    <% end %>
   
   </article>
-  
+
   <h4>Reviews</h4>
   <% @reviews.each do | review | %>
-    <%= render 'review', rating: review.rating, user_id: review.user_id, description: review.description %>
+    <%= render 'review', id: review.id, rating: review.rating, user_id: review.user_id, description: review.description, time: review.created_at %>
   <% end %>
 
 </section>

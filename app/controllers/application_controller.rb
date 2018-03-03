@@ -8,6 +8,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def authorize
+    unless current_user
+      flash[:error] = "You must be logged in to write reviews"
+      redirect_to '/login'
+    end
+  end
+
   private
 
   def cart
